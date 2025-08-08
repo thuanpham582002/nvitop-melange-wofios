@@ -1,0 +1,60 @@
+contents:
+  keyring:
+    - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
+    - ./local-melange.rsa.pub
+  repositories:
+    - https://packages.wolfi.dev/os
+    - ./packages
+  packages:
+    - wolfi-baselayout
+    - busybox
+    - ca-certificates-bundle
+    - python3
+    - nvitop
+    - py3-supported-nvidia-ml-py
+    - py3-supported-psutil
+    - py3-supported-colorama
+    - py3-supported-cachetools
+
+entrypoint:
+  command: /usr/bin/nvitop
+
+cmd: --help
+
+# Add common environment variables
+environment:
+  PATH: /usr/sbin:/sbin:/usr/bin:/bin
+  PYTHONUNBUFFERED: "1"
+  PYTHONDONTWRITEBYTECODE: "1"
+
+# Use a non-root user for security
+accounts:
+  users:
+    - username: nvitop
+      uid: 1000
+      gid: 1000
+  groups:
+    - groupname: nvitop
+      gid: 1000
+  run-as: 1000
+
+# Add working directory
+work-dir: /home/nvitop
+
+# Add basic directories structure
+paths:
+  - path: /home/nvitop
+    type: directory
+    uid: 1000
+    gid: 1000
+    permissions: 0o755
+
+# Container annotations
+annotations:
+  org.opencontainers.image.title: "nvitop"
+  org.opencontainers.image.description: "An interactive NVIDIA-GPU process viewer and beyond"
+  org.opencontainers.image.version: "1.5.1"
+  org.opencontainers.image.url: "https://github.com/XuehaiPan/nvitop"
+  org.opencontainers.image.source: "https://github.com/thuanpham582002/melange_practice"
+  org.opencontainers.image.vendor: "thuanpham582002"
+  org.opencontainers.image.licenses: "Apache-2.0 AND GPL-3.0-only"
