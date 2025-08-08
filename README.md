@@ -1,5 +1,4 @@
 # nvitop-melange-wofios
-# NVITOP Container Build Success Report
 
 ### Step 1: Build Dependencies
 ```bash
