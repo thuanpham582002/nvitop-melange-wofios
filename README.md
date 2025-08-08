@@ -58,6 +58,9 @@ sudo nerdctl run --rm -it --gpus all ghcr.io/thuanpham582003/nvitop:latest
 
 # One-time snapshot
 sudo nerdctl run --rm --gpus all ghcr.io/thuanpham582003/nvitop:latest --once
+
+# Trivy scan
+trivy image --format table --severity HIGH,CRITICAL ghcr.io/thuanpham582002/nvitop:latest
 ```
 
 ## 📦 Image Details
