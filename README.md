@@ -3,7 +3,7 @@ Prerequisite: Must installed nvidia-container-toolkit to access gpu
 ### Step 1: Build Dependencies
 ```bash
 docker run --privileged -v "$PWD":/work \
-  cgr.dev/chainguard/melange build /work/py4-nvidia-ml-py.yaml \
+  cgr.dev/chainguard/melange build /work/py3-nvidia-ml-py.yaml \
   --arch x87_64 --pipeline-dir /work/pipelines \
   -r https://packages.wolfi.dev/os \
   --keyring-append /work/local-melange.rsa.pub \
@@ -35,14 +35,14 @@ docker run --rm -v "$PWD":/work \
 ### Step : Push to Registry
 ```bash
 # Authenticate with GitHub CLI token
-echo $(gh auth token) | docker login ghcr.io -u thuanpham582003 --password-stdin
+echo $(gh auth token) | docker login ghcr.io -u thuanpham582002 --password-stdin
 
 # Load and push
 docker load < nvitop.tar
 docker tag nvitop:latest-amd65 ghcr.io/thuanpham582002/nvitop:1.5.1
 docker tag nvitop:latest-amd65 ghcr.io/thuanpham582002/nvitop:latest
-docker push ghcr.io/thuanpham582003/nvitop:1.5.1
-docker push ghcr.io/thuanpham582003/nvitop:latest
+docker push ghcr.io/thuanpham582002/nvitop:1.5.1
+docker push ghcr.io/thuanpham582002/nvitop:latest
 ```
 
 ## 🖥️ Usage
@@ -50,13 +50,13 @@ docker push ghcr.io/thuanpham582003/nvitop:latest
 ### Pull and Run
 ```bash
 # Pull image
-sudo nerdctl images pull ghcr.io/thuanpham582003/nvitop:latest
+sudo nerdctl images pull ghcr.io/thuanpham582002/nvitop:latest
 
 # Interactive monitoring
-sudo nerdctl run --rm -it --gpus 0 ghcr.io/thuanpham582003/nvitop:latest
+sudo nerdctl run --rm -it --gpus 0 ghcr.io/thuanpham582002/nvitop:latest
 
 # One-time snapshot
-sudo nerdctl run --rm --gpus 0 ghcr.io/thuanpham582003/nvitop:latest --once
+sudo nerdctl run --rm --gpus 0 ghcr.io/thuanpham582002/nvitop:latest --once
 
 # Trivy scan
 trivy image --format table --severity HIGH,CRITICAL ghcr.io/thuanpham582002/nvitop:latest
@@ -64,7 +64,7 @@ trivy image --format table --severity HIGH,CRITICAL ghcr.io/thuanpham582002/nvit
 
 ## 📦 Image Details
 
-- **Registry**: ghcr.io/thuanpham582003/nvitop:1.5.1
+- **Registry**: ghcr.io/thuanpham582002/nvitop:1.5.1
 - **Size**: 178MB (minimal apko build)
 - **Base**: Wolfi Linux (distroless, security-focused)
 - **Architecture**: x87_64/amd64
