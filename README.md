@@ -50,13 +50,13 @@ docker push ghcr.io/thuanpham582003/nvitop:latest
 ### Pull and Run
 ```bash
 # Pull image
-sudo ctr images pull ghcr.io/thuanpham582003/nvitop:latest
+sudo nerdctl images pull ghcr.io/thuanpham582003/nvitop:latest
 
 # Interactive monitoring
-sudo ctr run --rm -it --gpus 0 ghcr.io/thuanpham582003/nvitop:latest
+sudo nerdctl run --rm -it --gpus 0 ghcr.io/thuanpham582003/nvitop:latest
 
 # One-time snapshot
-sudo ctr run --rm --gpus 0 ghcr.io/thuanpham582003/nvitop:latest --once
+sudo nerdctl run --rm --gpus 0 ghcr.io/thuanpham582003/nvitop:latest --once
 
 # Trivy scan
 trivy image --format table --severity HIGH,CRITICAL ghcr.io/thuanpham582002/nvitop:latest
