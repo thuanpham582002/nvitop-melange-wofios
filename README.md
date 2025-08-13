@@ -1,5 +1,5 @@
 # nvitop-melange-wofios
-
+Prerequisite: Must installed nvidia-container-toolkit to access gpu
 ### Step 1: Build Dependencies
 ```bash
 docker run --privileged -v "$PWD":/work \
@@ -50,13 +50,13 @@ docker push ghcr.io/thuanpham582003/nvitop:latest
 ### Pull and Run
 ```bash
 # Pull image
-sudo nerdctl pull ghcr.io/thuanpham582003/nvitop:latest
+sudo ctr images pull ghcr.io/thuanpham582003/nvitop:latest
 
 # Interactive monitoring
-sudo nerdctl run --rm -it --gpus all ghcr.io/thuanpham582003/nvitop:latest
+sudo ctr run --rm -it --gpus 0 ghcr.io/thuanpham582003/nvitop:latest
 
 # One-time snapshot
-sudo nerdctl run --rm --gpus all ghcr.io/thuanpham582003/nvitop:latest --once
+sudo ctr run --rm --gpus 0 ghcr.io/thuanpham582003/nvitop:latest --once
 
 # Trivy scan
 trivy image --format table --severity HIGH,CRITICAL ghcr.io/thuanpham582002/nvitop:latest
